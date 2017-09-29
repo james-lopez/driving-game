@@ -1,24 +1,22 @@
 /* eslint-disable no-unused-vars */
 
-function renderPod(image) {
-  const $pod = document.createElement('img')
-  $pod.setAttribute('src', 'pod1.png')
-  $pod.setAttribute('id', 'pod1')
-  $pod.setAttribute('style', 'max-width: 80px; max-height: 80px;')
-  return $pod
-}
+const $pod = document.createElement('img')
+$pod.setAttribute('src', 'pod1.png')
+$pod.setAttribute('id', 'pod1')
+$pod.setAttribute('style', 'max-width: 80px; max-height: 80px;')
 
 const $speedway = document.querySelector('#speedway')
 
 class PodRacer {
   constructor($pod, direction, speed, location) {
+    this.$pod = $pod
     this.location = location
     this.speed = speed
     this.direction = direction
     $pod.classList.add(direction)
     const [ x, y ] = location
     $pod.style.left = x
-    $pod.style.right = y
+    $pod.style.top = y
   }
   // turn(direction) {
   //   this.direction = direction
@@ -27,19 +25,23 @@ class PodRacer {
   //   this.speed += amount
   // }
   move() {
-    switch (this.direction) {
-      case 'north':
-        this.location[1] -= this.speed
+    const {$pod, direction, speed, location} = this
+    switch (direction) {
+      case 'up':
+        location[1] -= this.speed
         break
-      case 'south':
-        this.location[1] += this.speed
+      case 'down':
+        location[1] += this.speed
         break
-      case 'east':
-        this.location[0] += this.speed
+      case 'right':
+        location[0] += this.speed
         break
-      case 'west':
-        this.location[0] -= this.speed
+      case 'left':
+        location[0] -= this.speed
     }
+    const [ x, y ] = location
+    $pod.style.left = x
+    $pod.style.top = y
   }
 
   start() {
@@ -49,9 +51,9 @@ class PodRacer {
   }
 }
 
-const anakin = new PodRacer(renderPod('pod1.png'), [0, 0], 5, 'north')
+const anakin = new PodRacer($pod, 'up', 5, [0, 0])
 
-$speedway.appendChild(renderPod('pod1.png'))
+$speedway.appendChild($pod)
 document.addEventListener('keydown', ({ key }) => {
   if (key === ' ') {
     anakin.start()
