@@ -15,14 +15,17 @@ class PodRacer {
     this.location = location
     this.speed = speed
     this.direction = direction
+    $pod.classList.add(direction)
+    const [ x, y ] = location
+    $pod.style.left = x
+    $pod.style.right = y
   }
-
-  turn(direction) {
-    this.direction = direction
-  }
-  accelerate(amount) {
-    this.speed += amount
-  }
+  // turn(direction) {
+  //   this.direction = direction
+  // }
+  // accelerate(amount) {
+  //   this.speed += amount
+  // }
   move() {
     switch (this.direction) {
       case 'north':
@@ -46,7 +49,7 @@ class PodRacer {
   }
 }
 
-const anakin = new PodRacer([0, 0], 5, 'north')
+const anakin = new PodRacer(renderPod('pod1.png'), [0, 0], 5, 'north')
 
 $speedway.appendChild(renderPod('pod1.png'))
 document.addEventListener('keydown', ({ key }) => {
