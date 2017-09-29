@@ -66,7 +66,7 @@ const $pod = document.createElement('img')
 $pod.setAttribute('src', 'pod1.png')
 $pod.setAttribute('class', 'pod')
 
-const anakin = new PodRacer($pod, 'up', 6, [800, 550])
+const anakin = new PodRacer($pod, 'right', 6, [0, 0])
 
 const keysOnVanNuys = {
   'ArrowUp': 'up',

@@ -4,9 +4,8 @@
 
 #speedway {
   background-color: lightgray;
-  width: 80%;
+  width: 80vw;
   height: 95vh;
-  margin: 0 15px;
   float: left;
 }
 
@@ -16,9 +15,10 @@
 }
 
 #info {
+  font-size: 1.25vw;
   font-family: 'Star Wars';
   float: left;
-  width: 15%;
+  width: 15vw;
   height: 95vh;
   text-align: center;
   background-color: black;
@@ -28,6 +28,7 @@
 h1 {
   color: #fefe00;
   margin-bottom: 0;
+  text-overflow: scroll;
 }
 
 h3 {
