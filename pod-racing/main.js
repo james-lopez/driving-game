@@ -4,15 +4,14 @@ function renderPod(image) {
   const $pod = document.createElement('img')
   $pod.setAttribute('src', 'pod1.png')
   $pod.setAttribute('id', 'pod1')
-  $pod.setAttribute('style', 'max-width: 100px; max-height: 100px;')
+  $pod.setAttribute('style', 'max-width: 80px; max-height: 80px;')
   return $pod
 }
 
 const $speedway = document.querySelector('#speedway')
-$speedway.appendChild(renderPod('pod1.png'))
 
 class PodRacer {
-  constructor(location, speed, direction) {
+  constructor($pod, direction, speed, location) {
     this.location = location
     this.speed = speed
     this.direction = direction
@@ -40,12 +39,18 @@ class PodRacer {
     }
   }
 
-  static start(car) {
-    setInterval(function () {
-      car.move()
+  start() {
+    this.interval = setInterval(() => {
+      this.move()
     }, 16)
   }
 }
 
-let bulba = new PodRacer([0, 100], 50, 'east')
-let anakin = new PodRacer([0, 0], 140, 'east')
+const anakin = new PodRacer([0, 0], 5, 'north')
+
+$speedway.appendChild(renderPod('pod1.png'))
+document.addEventListener('keydown', ({ key }) => {
+  if (key === ' ') {
+    anakin.start()
+  }
+})
