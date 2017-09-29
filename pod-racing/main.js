@@ -56,10 +56,10 @@ class PodRacer {
 }
 
 const degrees = {
-  up: 0,
-  down: 270,
+  up: 270,
+  down: 90,
   left: 180,
-  right: 90
+  right: 0
 }
 
 const $pod = document.createElement('img')
