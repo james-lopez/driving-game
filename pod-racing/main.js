@@ -81,7 +81,7 @@ document.addEventListener('keydown', ({ key }) => {
   // if (key !== ' ') return
   // if (anakin.speedingOrNah) return anakin.no()
   if (key in keysOnVanNuys) {
-    return anakin.turn(keysOnVanNuys[key])
+    return anakin.skrt(keysOnVanNuys[key])
   }
   if (key === ' ' && anakin.speedingOrNah) {
     return anakin.no()
