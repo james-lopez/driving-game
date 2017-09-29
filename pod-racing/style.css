@@ -1,7 +1,3 @@
 .pod {
-  position: fixed;
-}
-
-.east {
-  transform: rotate(90deg);
+  position: relative;
 }
