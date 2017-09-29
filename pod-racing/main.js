@@ -7,10 +7,11 @@ class PodRacer {
     this.speed = speed
     this.direction = direction
     this.interval = null
-    $speeder.classList.add(direction)
+    // $speeder.classList.add(direction)
     const [ x, y ] = location
     $speeder.style.left = x + 'px'
     $speeder.style.top = y + 'px'
+    $speeder.style.transform = 'rotate(' + degrees[direction] + 'deg)'
   }
 
   move() {
@@ -47,6 +48,13 @@ class PodRacer {
     clearInterval(this.interval)
     this.interval = null
   }
+}
+
+const degrees = {
+  up: 0,
+  down: 270,
+  left: 180,
+  right: 90
 }
 
 const $pod = document.createElement('img')
