@@ -17,17 +17,17 @@ class PodRacer {
   move() {
     const {$speeder, direction, speed, location} = this
     switch (direction) {
-      // case 'up':
-      //   location[1] -= speed
-      //   break
-      // case 'down':
-      //   location[1] += speed
-      //   break
+      case 'up':
+        location[1] -= speed
+        break
+      case 'down':
+        location[1] += speed
+        break
       case 'right':
         location[0] += speed
-      //   break
-      // case 'left':
-      //   location[0] -= speed
+        break
+      case 'left':
+        location[0] -= speed
     }
     const [ x, y ] = location
     $speeder.style.left = x + 'px'
@@ -47,6 +47,11 @@ class PodRacer {
   no() {
     clearInterval(this.interval)
     this.interval = null
+  }
+
+  skrt(direction) {
+    this.direction = direction
+    this.$speeder.style.transform = 'rotate(' + degrees[direction] + 'deg)'
   }
 }
 
