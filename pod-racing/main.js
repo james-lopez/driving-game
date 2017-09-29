@@ -39,8 +39,13 @@ class PodRacer {
     }, 16)
   }
 
-  get isStarted() {
+  get speedingOrNah() {
     return !!this.interval
+  }
+
+  no() {
+    clearInterval(this.interval)
+    this.interval = null
   }
 }
 
@@ -53,7 +58,10 @@ const anakin = new PodRacer($pod, 'right', 5, [0, 0])
 const $speedway = document.querySelector('#speedway')
 $speedway.appendChild($pod)
 document.addEventListener('keydown', ({ key }) => {
-  if (key === ' ') {
-    anakin.start()
-  }
+  // if (key === ' ') {
+  //   anakin.start()
+  // }
+  if (key !== ' ') return
+  if (anakin.speedingOrNah) return anakin.no()
+  anakin.start()
 })
