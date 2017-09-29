@@ -6,17 +6,13 @@ class PodRacer {
     this.location = location
     this.speed = speed
     this.direction = direction
+    this.interval = null
     $speeder.classList.add(direction)
     const [ x, y ] = location
     $speeder.style.left = x + 'px'
     $speeder.style.top = y + 'px'
   }
-  // turn(direction) {
-  //   this.direction = direction
-  // }
-  // accelerate(amount) {
-  //   this.speed += amount
-  // }
+
   move() {
     const {$speeder, direction, speed, location} = this
     switch (direction) {
@@ -41,6 +37,10 @@ class PodRacer {
     this.interval = setInterval(() => {
       this.move()
     }, 16)
+  }
+
+  get isStarted() {
+    return !!this.interval
   }
 }
 
