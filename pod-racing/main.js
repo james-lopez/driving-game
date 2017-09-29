@@ -68,13 +68,23 @@ $pod.setAttribute('class', 'pod')
 
 const anakin = new PodRacer($pod, 'right', 5, [0, 0])
 
+const keysOnVanNuys = {
+  'ArrowUp': 'up',
+  'ArrowRight': 'right',
+  'ArrowDown': 'down',
+  'ArrowLeft': 'left'
+}
+
 const $speedway = document.querySelector('#speedway')
 $speedway.appendChild($pod)
 document.addEventListener('keydown', ({ key }) => {
-  // if (key === ' ') {
-  //   anakin.start()
-  // }
-  if (key !== ' ') return
-  if (anakin.speedingOrNah) return anakin.no()
+  // if (key !== ' ') return
+  // if (anakin.speedingOrNah) return anakin.no()
+  if (key in keysOnVanNuys) {
+    return anakin.turn(keysOnVanNuys[key])
+  }
+  if (key === ' ' && anakin.speedingOrNah) {
+    return anakin.no()
+  }
   anakin.start()
 })
