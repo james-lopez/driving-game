@@ -7,26 +7,27 @@ class PodRacer {
     this.speed = speed
     this.direction = direction
     this.interval = null
-    $speeder.classList.add(direction)
+    // $speeder.classList.add(direction)
     const [ x, y ] = location
     $speeder.style.left = x + 'px'
     $speeder.style.top = y + 'px'
+    $speeder.style.transform = 'rotate(' + degrees[direction] + 'deg)'
   }
 
   move() {
     const {$speeder, direction, speed, location} = this
     switch (direction) {
-      // case 'up':
-      //   location[1] -= speed
-      //   break
-      // case 'down':
-      //   location[1] += speed
-      //   break
+      case 'up':
+        location[1] -= speed
+        break
+      case 'down':
+        location[1] += speed
+        break
       case 'right':
         location[0] += speed
-      //   break
-      // case 'left':
-      //   location[0] -= speed
+        break
+      case 'left':
+        location[0] -= speed
     }
     const [ x, y ] = location
     $speeder.style.left = x + 'px'
@@ -47,21 +48,43 @@ class PodRacer {
     clearInterval(this.interval)
     this.interval = null
   }
+
+  skrt(direction) {
+    this.direction = direction
+    this.$speeder.style.transform = 'rotate(' + degrees[direction] + 'deg)'
+  }
+}
+
+const degrees = {
+  up: 270,
+  down: 90,
+  left: 180,
+  right: 0
 }
 
 const $pod = document.createElement('img')
 $pod.setAttribute('src', 'pod1.png')
 $pod.setAttribute('class', 'pod')
 
-const anakin = new PodRacer($pod, 'right', 5, [0, 0])
+const anakin = new PodRacer($pod, 'right', 6, [0, 0])
+
+const keysOnVanNuys = {
+  'ArrowUp': 'up',
+  'ArrowRight': 'right',
+  'ArrowDown': 'down',
+  'ArrowLeft': 'left'
+}
 
 const $speedway = document.querySelector('#speedway')
 $speedway.appendChild($pod)
 document.addEventListener('keydown', ({ key }) => {
-  // if (key === ' ') {
-  //   anakin.start()
-  // }
-  if (key !== ' ') return
-  if (anakin.speedingOrNah) return anakin.no()
+  // if (key !== ' ') return
+  // if (anakin.speedingOrNah) return anakin.no()
+  if (key in keysOnVanNuys) {
+    return anakin.skrt(keysOnVanNuys[key])
+  }
+  if (key === ' ' && anakin.speedingOrNah) {
+    return anakin.no()
+  }
   anakin.start()
 })

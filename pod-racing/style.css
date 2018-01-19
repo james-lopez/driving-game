@@ -1,3 +1,41 @@
 .pod {
   position: relative;
 }
+
+#speedway {
+  background-color: lightgray;
+  width: 80vw;
+  height: 95vh;
+  float: left;
+}
+
+@font-face {
+  font-family: 'Star Wars';
+  src: url('Starjedi.ttf') format('truetype');
+}
+
+#info {
+  font-size: 1.25vw;
+  font-family: 'Star Wars';
+  float: left;
+  width: 15vw;
+  height: 95vh;
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+
+h1 {
+  color: #fefe00;
+  margin-bottom: 0;
+  text-overflow: scroll;
+}
+
+h3 {
+  margin-top: 0;
+  color: #fefe00;
+}
+
+span {
+  color: #4083dd;
+}
