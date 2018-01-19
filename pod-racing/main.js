@@ -6,17 +6,13 @@ class PodRacer {
     this.location = location
     this.speed = speed
     this.direction = direction
+    this.interval = null
     $speeder.classList.add(direction)
     const [ x, y ] = location
     $speeder.style.left = x + 'px'
     $speeder.style.top = y + 'px'
   }
-  // turn(direction) {
-  //   this.direction = direction
-  // }
-  // accelerate(amount) {
-  //   this.speed += amount
-  // }
+
   move() {
     const {$speeder, direction, speed, location} = this
     switch (direction) {
@@ -42,6 +38,15 @@ class PodRacer {
       this.move()
     }, 16)
   }
+
+  get speedingOrNah() {
+    return !!this.interval
+  }
+
+  no() {
+    clearInterval(this.interval)
+    this.interval = null
+  }
 }
 
 const $pod = document.createElement('img')
@@ -53,7 +58,10 @@ const anakin = new PodRacer($pod, 'right', 5, [0, 0])
 const $speedway = document.querySelector('#speedway')
 $speedway.appendChild($pod)
 document.addEventListener('keydown', ({ key }) => {
-  if (key === ' ') {
-    anakin.start()
-  }
+  // if (key === ' ') {
+  //   anakin.start()
+  // }
+  if (key !== ' ') return
+  if (anakin.speedingOrNah) return anakin.no()
+  anakin.start()
 })
